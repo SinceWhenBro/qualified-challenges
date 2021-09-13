@@ -1,6 +1,6 @@
 import React from "react";
 import {secondsToDuration, minutesToDuration} from "../utils/duration"
-import Subtitle from "./subtitle";
+import Subtitle from "./Subtitle";
 import BarPercentage from "./BarPercentage";
 
 function SessionTitle({session, focusDuration, breakDuration}){
