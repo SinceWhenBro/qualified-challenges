@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+
 
 function UserProfile() {
   const [user, setUser] = useState({});
   const { userId } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -37,7 +39,7 @@ function UserProfile() {
       { method: "DELETE" } // the delete method tells the API to delete the user
     )
       .then((response) => response.json())
-      .then((data) => console.log("deleteHandler is not fully implemented"));
+      history.push("/");
   };
 
   if (user.id) {
@@ -54,3 +56,4 @@ function UserProfile() {
 }
 
 export default UserProfile;
+
