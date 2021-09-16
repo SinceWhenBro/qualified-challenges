@@ -9,7 +9,7 @@ export const Users = ({ users = [] }) => {
       <td>{user.name}</td>
       <td>{user.email}</td>
       <td>
-        <Link to={`/users/${user.id}`}>View -></Link>
+        <Link to={`/users/${user.id}`}>View -</Link>
       </td>
     </tr>
   ));

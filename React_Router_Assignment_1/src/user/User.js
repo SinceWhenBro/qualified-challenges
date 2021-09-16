@@ -4,11 +4,14 @@ import { fetchUserWithPosts } from "../api";
 import PostList from "./PostList";
 import PostsNav from "./PostsNav";
 import ErrorMessage from "../common/ErrorMessage";
+import { Route, Switch, Link, useRouteMatch } from "react-router-dom";
 
 export const User = () => {
   const [user, setUser] = useState({ posts: [] });
   const [error, setError] = useState(undefined);
-  const userId = 1; // TODO: This ID will need to be pulled from parameters.
+  const {url, params} = useRouteMatch();
+  const userId = params.userId;
+  //const userId = 1; // TODO: This ID will need to be pulled from parameters.
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -25,7 +28,7 @@ export const User = () => {
     return (
       <ErrorMessage error={error}>
         <p>
-          <a>Return Home</a>
+          <Link to="/">Return Home</Link>
         </p>
       </ErrorMessage>
     );
@@ -49,17 +52,23 @@ export const User = () => {
         <h2 className="mb-3">{user.name}</h2>
         <ul className="nav nav-tabs">
           <li className="nav-item">
-            <a className="nav-link">Profile</a>
+            <Link to={url} className="nav-link">Profile</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link">Posts</a>
+            <Link to={url + "/posts"}className="nav-link">Posts</Link>
           </li>
         </ul>
 
         {user.id ? (
           <div className="p-4 border border-top-0">
-            <PostList posts={user.posts} />
-            <UserProfile user={user} />
+            <Switch>
+            <Route path={`${url}/posts`}>
+              <PostList posts={user.posts} />
+            </Route>
+            <Route path={url}>
+              <UserProfile user={user} />
+            </Route>
+            </Switch>
           </div>
         ) : (
           <div className="p-4 border border-top-0">
