@@ -33,7 +33,7 @@ export const User = ({ users = [] }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={`${url}/profile/posts`} data-testid="user-posts">
+              <NavLink to={`${url}/posts`} data-testid="user-posts">
                 Posts
               </NavLink>
             </li>
