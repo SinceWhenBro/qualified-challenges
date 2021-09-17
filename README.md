@@ -3,7 +3,7 @@
 Most Notable Project(s):
 =============================
 
-*Must run npm install 
+*Must run npm install, then npm start to use any projects.
 
 Pomodoro Timer: Fully functional app where a user can set and adjust timers for work ethic
 
