@@ -27,19 +27,18 @@ function CreateDeck() {
 
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlhtmlFor="name">Name</label>
-                    <input name="name" type="text" className="form-control" id="exampleInputEmail1" placeholder="Deck name" onChange={handleChange} value={deckData.name}/>
-                    <small id="emailHelp" className="form-text text-muted"></small>
+                    <label htmlFor="name">Name</label>
+                    <input id="name" name="name" type="text" className="form-control"  placeholder="Deck name" onChange={handleChange} value={deckData.name}/>
+                    <small className="form-text text-muted"></small>
                 </div>
                 <div className="form-group">
-                    <label htmlhtmlFor="description">Description</label>
-                    <input name="description" type="textarea" className="form-control" id="exampleInputPassword1" placeholder="Brief description of the deck." onChange={handleChange} value={deckData.description}/>
+                    <label htmlFor="description">Description</label>
+                    <textarea id="description" name="description" className="form-control" placeholder="Brief description of the deck." onChange={handleChange} value={deckData.description}/>
                 </div>
-                
-                    <button type="submit" className="btn btn-secondary">Cancel</button>
                 <Link to="/">
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                    <button type="button" className="btn btn-secondary">Cancel</button>
                 </Link>
+                    <button type="submit" className="btn btn-primary">Submit</button>
             </form>
 
         </>

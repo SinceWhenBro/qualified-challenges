@@ -43,18 +43,17 @@ function AddCard(decks) {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Front side of card</label>
-                    <input name="name" type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Deck name" onChange={handleChange} value={cardData.front}/>
-                    <small id="emailHelp" className="form-text text-muted"></small>
+                    <textarea id="name "name="name" type="email" className="form-control" placeholder="Deck name" onChange={handleChange} value={cardData.front}/>
+                    <small className="form-text text-muted"></small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Back side of card</label>
-                    <input name="description" type="textarea" className="form-control" id="exampleInputPassword1" placeholder="Brief description of the deck." onChange={handleChange} value={cardData.back}/>
+                    <textarea id="description" name="description" type="textarea" className="form-control" placeholder="Brief description of the deck." onChange={handleChange} value={cardData.back}/>
                 </div>
-                
-                    <button type="submit" className="btn btn-secondary">Save</button>
-                <Link to="/">
+                    <Link to="/">
+                        <button type="button" className="btn btn-secondary">Save</button>
+                    </Link>
                     <button type="submit" className="btn btn-primary">Done</button>
-                </Link>
             </form>
 
         </>

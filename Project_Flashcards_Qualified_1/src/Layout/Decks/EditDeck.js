@@ -41,16 +41,16 @@ function EditDeck({decks, setDecks}) {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Name</label>
-                    <input name="name" type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={`${deckData.name}`} onChange={handleChange} value={deckData.name}/>
+                    <input id="name" name="name" type="email" className="form-control"  placeholder={`${deckData.name}`} onChange={handleChange} value={deckData.name}/>
                     <small id="emailHelp" className="form-text text-muted"></small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Description</label>
-                    <input name="description" type="textarea" className="form-control" id="exampleInputPassword1" placeholder={`${deckData.description}`} onChange={handleChange} value={deckData.description}/>
+                    <input id="description" name="description" type="textarea" className="form-control"  placeholder={`${deckData.description}`} onChange={handleChange} value={deckData.description}/>
                 </div>
                 
                 <Link to="/decks/:deckId">
-                    <button type="submit" className="btn btn-secondary">Cancel</button>
+                    <button type="button" className="btn btn-secondary">Cancel</button>
                 </Link>
                 <Link to="/">
                     <button type="submit" className="btn btn-primary">Submit</button>
