@@ -1,10 +1,21 @@
-import React, {useState} from "react";
-import { Link, useHistory} from "react-router-dom";
-import { updateCard } from "../../utils/api";
+import React, {useState, useEffect} from "react";
+import { Link, useHistory, useParams} from "react-router-dom";
+import { updateCard, readCard } from "../../utils/api";
 
 function EditCard(decks) {
     const [cardData, setCardData] = useState({front: "", back: ""});
     const history = useHistory();
+    const {cardId} = useParams();
+
+    useEffect(() => {
+        const abortController = new AbortController();
+    
+        async function fetchCards() {
+          const cardsData = await readCard(cardId, abortController.signal);
+          setCardData(cardsData);
+        }
+        fetchCards();
+      }, [cardId]);
 
     function handleChange({target}){
         setCardData({...cardData, [target.name]: target.value})
@@ -23,16 +34,16 @@ function EditCard(decks) {
                     <li className="breadcrumb-item">Edit Deck</li>
                 </ol>
             </nav>
-            <h1>Create Deck</h1>
+            <h1>Edit Card</h1>
 
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label for="exampleInputEmail1">Front of card</label>
+                    <label htmlFor="exampleInputEmail1">Front of card</label>
                     <input name="name" type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={`${cardData.front}`} onChange={handleChange} value={cardData.front}/>
                     <small id="emailHelp" className="form-text text-muted"></small>
                 </div>
                 <div className="form-group">
-                    <label for="exampleInputPassword1">Back of card</label>
+                    <label htmlFor="exampleInputPassword1">Back of card</label>
                     <input name="description" type="textarea" className="form-control" id="exampleInputPassword1" placeholder={`${cardData.back}`} onChange={handleChange} value={cardData.back}/>
                 </div>
                 

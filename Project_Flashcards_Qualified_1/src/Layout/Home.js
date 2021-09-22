@@ -37,7 +37,7 @@ export default function Home({decks , setDecks}) {
                         <h5 className="card-title">{deck.name}</h5>
                         <p className="card-text">{deck.description}</p>
                         <p>{deck.cards.length} cards</p>
-                        <Link to="">
+                        <Link to={`/decks/${deck.id}`}>
                             <button className="btn btn-primary">View</button>
                         </Link>
                         <Link to={`/decks/${deck.id}/study`}>

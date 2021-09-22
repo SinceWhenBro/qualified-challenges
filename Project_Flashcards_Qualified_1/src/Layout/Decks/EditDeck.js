@@ -1,11 +1,24 @@
-import React, {useState} from "react";
-import { Link, useHistory} from "react-router-dom";
-import { updateDeck } from "../../utils/api";
+import React, {useState, useEffect} from "react";
+import { Link, useHistory, useParams} from "react-router-dom";
+import { updateDeck, readDeck } from "../../utils/api";
 
-function EditDeck(decks) {
+
+function EditDeck({decks, setDecks}) {
     const [deckData, setDeckData] = useState({name: "", description: ""});
     const history = useHistory();
-
+    const {deckId} = useParams();
+    
+    useEffect(() => {
+        const abortController = new AbortController();
+    
+        async function fetchCards() {
+          const decksData = await readDeck(deckId, abortController.signal);
+          console.log(decksData)
+          setDeckData(decksData);
+        }
+        fetchCards();
+      }, [deckId]);
+    
     function handleChange({target}){
         setDeckData({...deckData, [target.name]: target.value})
     }
@@ -23,16 +36,16 @@ function EditDeck(decks) {
                     <li className="breadcrumb-item">Edit Deck</li>
                 </ol>
             </nav>
-            <h1>Create Deck</h1>
+            <h1>Edit Deck</h1>
 
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label for="exampleInputEmail1">Name</label>
+                    <label htmlFor="exampleInputEmail1">Name</label>
                     <input name="name" type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={`${deckData.name}`} onChange={handleChange} value={deckData.name}/>
                     <small id="emailHelp" className="form-text text-muted"></small>
                 </div>
                 <div className="form-group">
-                    <label for="exampleInputPassword1">Description</label>
+                    <label htmlFor="exampleInputPassword1">Description</label>
                     <input name="description" type="textarea" className="form-control" id="exampleInputPassword1" placeholder={`${deckData.description}`} onChange={handleChange} value={deckData.description}/>
                 </div>
                 

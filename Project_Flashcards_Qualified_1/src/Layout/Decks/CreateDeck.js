@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link, useHistory} from "react-router-dom";
 import { createDeck } from "../../utils/api";
 
-function CreateDeck(decks) {
+function CreateDeck() {
     const [deckData, setDeckData] = useState({name: "", description: ""});
     const history = useHistory();
 
@@ -27,12 +27,12 @@ function CreateDeck(decks) {
 
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Name</label>
-                    <input name="name" type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Deck name" onChange={handleChange} value={deckData.name}/>
+                    <label htmlhtmlFor="name">Name</label>
+                    <input name="name" type="text" className="form-control" id="exampleInputEmail1" placeholder="Deck name" onChange={handleChange} value={deckData.name}/>
                     <small id="emailHelp" className="form-text text-muted"></small>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Description</label>
+                    <label htmlhtmlFor="description">Description</label>
                     <input name="description" type="textarea" className="form-control" id="exampleInputPassword1" placeholder="Brief description of the deck." onChange={handleChange} value={deckData.description}/>
                 </div>
                 
