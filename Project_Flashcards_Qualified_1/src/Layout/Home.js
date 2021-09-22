@@ -17,7 +17,7 @@ export default function Home({decks , setDecks}) {
     }
     fetchDecks();
 
-  }, [decks]);
+  }, []);
 
   function handleDelete(deckID){
     if (window.confirm(message)){
@@ -28,19 +28,19 @@ export default function Home({decks , setDecks}) {
   return (
     <>
         <Link to="/decks/new">
-            <button class="btn btn-secondary">Create Deck</button>
+            <button className="btn btn-secondary">Create Deck</button>
         </Link>
-        <div class="card w-50">
+        <div className="card w-50">
             {decks.map(deck => {
                 return(
-                    <div class="card-body">
-                        <h5 class="card-title">{deck.name}</h5>
-                        <p class="card-text">{deck.description}</p>
-    
+                    <div key={deck.id} className="card-body">
+                        <h5 className="card-title">{deck.name}</h5>
+                        <p className="card-text">{deck.description}</p>
+                        <p>{deck.cards.length} cards</p>
                         <Link to="">
                             <button className="btn btn-primary">View</button>
                         </Link>
-                        <Link to="/decks/:deckId/study">
+                        <Link to={`/decks/${deck.id}/study`}>
                             <button className="btn btn-secondary">Study</button>
                         </Link>
                 

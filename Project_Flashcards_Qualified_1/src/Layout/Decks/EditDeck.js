@@ -1,0 +1,51 @@
+import React, {useState} from "react";
+import { Link, useHistory} from "react-router-dom";
+import { updateDeck } from "../../utils/api";
+
+function EditDeck(decks) {
+    const [deckData, setDeckData] = useState({name: "", description: ""});
+    const history = useHistory();
+
+    function handleChange({target}){
+        setDeckData({...deckData, [target.name]: target.value})
+    }
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const response = await updateDeck(deckData);
+        history.push(`/decks/${response.id}`)
+      }
+    return(
+        <>
+            <nav aria-label="nav">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/">Home</a></li>
+                    <li className="breadcrumb-item">Edit Deck</li>
+                </ol>
+            </nav>
+            <h1>Create Deck</h1>
+
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input name="name" type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={`${deckData.name}`} onChange={handleChange} value={deckData.name}/>
+                    <small id="emailHelp" className="form-text text-muted"></small>
+                </div>
+                <div className="form-group">
+                    <label for="exampleInputPassword1">Description</label>
+                    <input name="description" type="textarea" className="form-control" id="exampleInputPassword1" placeholder={`${deckData.description}`} onChange={handleChange} value={deckData.description}/>
+                </div>
+                
+                <Link to="/decks/:deckId">
+                    <button type="submit" className="btn btn-secondary">Cancel</button>
+                </Link>
+                <Link to="/">
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </Link>
+            </form>
+
+        </>
+    )
+}
+
+export default EditDeck;
