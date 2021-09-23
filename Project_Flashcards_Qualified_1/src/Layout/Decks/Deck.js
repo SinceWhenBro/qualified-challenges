@@ -1,15 +1,18 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { readDeck, deleteCard } from "../../utils/api";
 
 export default function Deck(){
     const [deck, setDeck] = useState({cards: []});
     const {deckId} = useParams();
+    const history = useHistory();
     const message ="Delete this card?";
+
     function handleDelete(deckID){
         if (window.confirm(message)){
             deleteCard(deckID);
+            history.go(0);
         }
     }
 
@@ -28,7 +31,7 @@ export default function Deck(){
         <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
                 <li className="breadcrumb-item"><a href="/">Home</a></li>
-                <li className="breadcrumb-item"><a href="#">Deck</a></li>
+                <li className="breadcrumb-item"><a href={`/decks/${deckId}`}>Deck</a></li>
                 <li className="breadcrumb-item active" aria-current="page">Study</li>
             </ol>
             <h2>{deck.name}</h2>

@@ -9,7 +9,7 @@ import Study from "./Study";
 import EditCard from "./Cards/EditCard";
 import EditDeck from "./Decks/EditDeck";
 import AddCard from "./Cards/AddCard";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function Layout() {
   const [ decks, setDecks ] = useState([]);

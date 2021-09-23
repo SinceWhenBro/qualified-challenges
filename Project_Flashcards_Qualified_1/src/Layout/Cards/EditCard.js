@@ -39,12 +39,12 @@ function EditCard(decks) {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Front of card</label>
-                    <input name="name" type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder={`${cardData.front}`} onChange={handleChange} value={cardData.front}/>
-                    <small id="emailHelp" className="form-text text-muted"></small>
+                    <textarea id="name" name="name" type="email" className="form-control" placeholder={`${cardData.front}`} onChange={handleChange} value={cardData.front}/>
+                    <small  className="form-text text-muted"></small>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Back of card</label>
-                    <input name="description" type="textarea" className="form-control" id="exampleInputPassword1" placeholder={`${cardData.back}`} onChange={handleChange} value={cardData.back}/>
+                    <textarea name="description" className="form-control"  placeholder={`${cardData.back}`} onChange={handleChange} value={cardData.back}/>
                 </div>
                 
                 <Link to="/decks/:deckId">

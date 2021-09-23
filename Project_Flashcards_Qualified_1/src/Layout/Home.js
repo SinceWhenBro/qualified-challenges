@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { deleteDeck, listDecks } from "../utils/api";
 const message = "Delete this deck?";
