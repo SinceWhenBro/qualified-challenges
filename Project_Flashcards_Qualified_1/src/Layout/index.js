@@ -9,10 +9,10 @@ import Study from "./Study";
 import EditCard from "./Cards/EditCard";
 import EditDeck from "./Decks/EditDeck";
 import AddCard from "./Cards/AddCard";
-import React, { useState } from "react";
+import React from "react";
 
 function Layout() {
-  const [ decks, setDecks ] = useState([]);
+
   
 
   return (
@@ -21,7 +21,7 @@ function Layout() {
       <div className="container">
         <Switch>
           <Route exact path="/">
-            <Home decks={decks} setDecks={setDecks}/>
+            <Home/>
           </Route>
           <Route exact path="/decks/:deckId/study">
             <Study />
@@ -30,7 +30,7 @@ function Layout() {
             <CreateDeck/>
           </Route>
           <Route exact path="/decks/:deckId">
-            <Deck deck={decks} setDeck={setDecks}/>
+            <Deck/>
           </Route>
           <Route exact path="/decks/:deckId/edit">
             <EditDeck/>

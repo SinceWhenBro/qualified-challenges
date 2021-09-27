@@ -44,7 +44,7 @@ function stripCards(deck) {
 async function fetchJson(url, options, onCancel) {
   try {
     const response = await fetch(url, options);
-
+    console.log(response.status,response.body,response);
     if (response.status < 200 || response.status > 399) {
       throw new Error(`${response.status} - ${response.statusText}`);
     }
@@ -141,6 +141,7 @@ export async function updateDeck(updatedDeck, signal) {
 export async function deleteDeck(deckId, signal) {
   const url = `${API_BASE_URL}/decks/${deckId}`;
   const options = { method: "DELETE", signal };
+  console.log(url);
   return await fetchJson(url, options);
 }
 

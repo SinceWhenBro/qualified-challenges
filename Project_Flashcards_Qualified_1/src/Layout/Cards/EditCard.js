@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
-import { Link, useHistory, useParams} from "react-router-dom";
+import { useHistory, useParams} from "react-router-dom";
 import { updateCard, readCard } from "../../utils/api";
+import Form from "../Form"
 
-function EditCard(decks) {
+function EditCard() {
     const [cardData, setCardData] = useState({front: "", back: ""});
     const history = useHistory();
     const {cardId} = useParams();
@@ -24,7 +25,8 @@ function EditCard(decks) {
     async function handleSubmit(event) {
         event.preventDefault();
         const response = await updateCard(cardData);
-        history.push(`/decks/${response.id}`)
+        console.log(response);
+        history.push(`/decks/${cardData.deckId}`)
       }
     return(
         <>
@@ -36,24 +38,7 @@ function EditCard(decks) {
             </nav>
             <h1>Edit Card</h1>
 
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Front of card</label>
-                    <textarea id="name" name="name" type="email" className="form-control" placeholder={`${cardData.front}`} onChange={handleChange} value={cardData.front}/>
-                    <small  className="form-text text-muted"></small>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Back of card</label>
-                    <textarea name="description" className="form-control"  placeholder={`${cardData.back}`} onChange={handleChange} value={cardData.back}/>
-                </div>
-                
-                <Link to="/decks/:deckId">
-                    <button type="submit" className="btn btn-secondary">Cancel</button>
-                </Link>
-                <Link to="/">
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                </Link>
-            </form>
+            <Form handleChange={handleChange} handleSubmit={handleSubmit} cardData={cardData}/>
 
         </>
     )

@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { deleteDeck, listDecks } from "../utils/api";
 const message = "Delete this deck?";
 
 //NEED HELP
 
-export default function Home({decks , setDecks}) {
-
-  useEffect(() => {
+export default function Home() {
+    const [ decks, setDecks ] = useState([]);
+    const history = useHistory();
+    
+    useEffect(() => {
 
     const abortController = new AbortController();
 
@@ -19,9 +21,10 @@ export default function Home({decks , setDecks}) {
 
   }, []);
 
-  function handleDelete(deckID){
+  async function handleDelete(deckID){
     if (window.confirm(message)){
-        deleteDeck(deckID);
+        await deleteDeck(deckID);
+        history.go(0);
     }
 }
 
@@ -31,7 +34,7 @@ export default function Home({decks , setDecks}) {
             <button className="btn btn-secondary">Create Deck</button>
         </Link>
         <div className="card w-50">
-            {decks.map(deck => {
+            {decks && decks.map(deck => {
                 return(
                     <div key={deck.id} className="card-body">
                         <h5 className="card-title">{deck.name}</h5>
@@ -45,7 +48,7 @@ export default function Home({decks , setDecks}) {
                         </Link>
                 
                         <button className="btn btn-danger" onClick={() => handleDelete(deck.id)}>
-                            Trash
+                            Delete
                         </button>
                     </div>
                 )

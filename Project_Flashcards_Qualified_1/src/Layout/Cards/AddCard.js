@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
-import { Link, useHistory, useParams} from "react-router-dom";
+import { useHistory, useParams} from "react-router-dom";
 import { createCard, readDeck } from "../../utils/api";
+import Form from "../Form"
 
 function AddCard(decks) {
     const [cardData, setCardData] = useState({front: "", back: ""});
@@ -25,8 +26,10 @@ function AddCard(decks) {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        const response = await createCard(cardData);
-        history.push(`/decks/${response.id}`)
+        console.log(cardData, deckId);
+        const response = await createCard(deckId, cardData);
+        console.log(response);
+        history.push(`/decks/${deckId}`)
       }
     return(
         <>
@@ -37,24 +40,9 @@ function AddCard(decks) {
                     <li className="breadcrumb-item">Add Card</li>
                 </ol>
             </nav>
-            
             <h1>{`${deck.name}: Add Card`}</h1>
 
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="exampleInputEmail1">Front side of card</label>
-                    <textarea id="name "name="name" type="email" className="form-control" placeholder="Deck name" onChange={handleChange} value={cardData.front}/>
-                    <small className="form-text text-muted"></small>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Back side of card</label>
-                    <textarea id="description" name="description" type="textarea" className="form-control" placeholder="Brief description of the deck." onChange={handleChange} value={cardData.back}/>
-                </div>
-                    <Link to="/">
-                        <button type="button" className="btn btn-secondary">Save</button>
-                    </Link>
-                    <button type="submit" className="btn btn-primary">Done</button>
-            </form>
+            <Form handleChange={handleChange} handleSubmit={handleSubmit} cardData={cardData}/>
 
         </>
     )
