@@ -14,6 +14,6 @@ Decoder Ring: Fully functional web app for users to encode or decode messages ba
 ![decoder](https://user-images.githubusercontent.com/70001770/133153321-86885ee9-a36c-4b00-8c80-e3ca862a2df6.png)
 
 Flashcard app: Fully functional web app that allows teachers and students to access, delete, add, and maniplulate flashcards for studying.
-
+(Can update cards/decks via UI or hardcoding into database)
 ![flashcardPhot](https://user-images.githubusercontent.com/70001770/134964918-10ea461a-0c84-4d84-a991-2201e13199ad.png)
 
