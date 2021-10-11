@@ -47,7 +47,7 @@ export default function Home() {
                             <button className="btn btn-secondary">Study</button>
                         </Link>
                 
-                        <button className="btn btn-danger" onClick={() => handleDelete(deck.id)}>
+                        <button className="btn btn-warning" onClick={() => handleDelete(deck.id)}>
                             Delete
                         </button>
                     </div>
